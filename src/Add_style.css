@@ -1,0 +1,52 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.inputContainer{
+border: 1px solid grey;
+width: 30%;
+height: 30%;
+padding: 2%;
+margin: 1%;
+}
+.btn{
+    margin: 1%;
+    width: 50px;
+    border-radius: 15%;
+    border: 1px;
+    transition: 0.5s ease;
+    &:hover{
+        cursor: pointer;
+        scale: 1.1;
+    }
+
+}
+.display_section{
+    width: 60%;
+    margin: 1%;
+    display: flex;
+    gap: 8%;
+}
+.cartList{
+    padding-left:20px;
+    border: 1px solid grey;
+    width: 60%;
+
+}
+li{
+display: flex;
+flex-direction: row;
+    gap: 10px;
+
+}
+.display{
+    display: flex;
+    flex-direction: row;
+    gap:3px
+}
+.completedTask{
+    border: 1px solid grey;
+
+    padding-left:20px;
+width: 40%;
+}
