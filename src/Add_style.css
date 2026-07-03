@@ -1,52 +1,92 @@
-*{
-    margin: 0;
-    padding: 0;
+* {
+  margin: 0;
+  padding: 0;
 }
-.inputContainer{
-border: 1px solid grey;
-width: 30%;
-height: 30%;
-padding: 2%;
-margin: 1%;
+.inputContainer {
+  border: 1px solid grey;
+  width: 30%;
+  height: 30%;
+  padding: 1%;
+  margin: 1%;
+  font-size: 25px;
+  & input {
+    font-size: 25px;
+  }
 }
-.btn{
-    margin: 1%;
-    width: 50px;
-    border-radius: 15%;
-    border: 1px;
-    transition: 0.5s ease;
-    &:hover{
-        cursor: pointer;
-        scale: 1.1;
-    }
+.btn {
+  font-size: 25px;
+  margin: 1%;
+  width: 85px;
+  height: 40px;
+  border-radius: 15%;
+  border: 1px solid green;
+  transition: 0.5s ease;
+  &:hover {
+    cursor: pointer;
+    scale: 1.1;
+  }
+}
+.display_section {
+  width: 60%;
+  margin: 1%;
+  display: flex;
+  gap: 8%;
+  & h2 {
+    font-weight: lighter;
+    margin-bottom: 5px;
+  }
+}
+.display {
+  display: flex;
+  flex-direction: row;
+  gap: 3px;
+  & input[type="checkbox"] {
+  width: 25px;
+  height: 25px;
+}
+}
+.taskList {
+  padding: 10px;
+  padding-left: 20px;
+  border: 1px solid grey;
+  width: 60%;
 
-}
-.display_section{
-    width: 60%;
-    margin: 1%;
-    display: flex;
-    gap: 8%;
-}
-.cartList{
-    padding-left:20px;
-    border: 1px solid grey;
-    width: 60%;
-
-}
-li{
-display: flex;
-flex-direction: row;
-    gap: 10px;
-
-}
-.display{
+  & li {
     display: flex;
     flex-direction: row;
-    gap:3px
+    gap: 10px;
+    font-size: 25px;
+    list-style-type: disc;
+  }
+  & li::before {
+    content: "•";
+  }
 }
-.completedTask{
-    border: 1px solid grey;
 
-    padding-left:20px;
-width: 40%;
+.completedTask {
+  padding: 10px;
+  border: 1px solid grey;
+  padding-left: 25px;
+  & li {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    font-size: 25px;
+  }
+    & li::before {
+    content: "•";
+  }
+  & .delete-btn {
+    padding: 2px;
+    font-size: 20px;
+    width: 70px;
+    height: 30px;
+    border-radius: 15%;
+    border: 1px solid green;
+    transition: 0.5s ease;
+    &:hover {
+      cursor: pointer;
+      scale: 1.1;
+    }
+  }
 }

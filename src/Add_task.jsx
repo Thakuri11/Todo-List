@@ -5,6 +5,7 @@ export default function Add() {
   const [cart, setCart] = useState([]);
   const [completed, setCompleted] = useState([]);
 
+  // function for adding task to the taskList
   const addItem = () => {
     if (item == "") return;
     setCart([...cart, { text: item, isNew: false }]);
@@ -12,22 +13,33 @@ export default function Add() {
     setItem("");
   };
 
+  //function to remove task from taskList when completed
   const removeItem = (index) => {
     const completedTask = cart[index];
-    setCompleted([...completed, completedTask]);
-    const updatedCart = cart.filter((_, i) => i !== index);
-    setCart(updatedCart);
+    setTimeout(() => {
+      setCompleted([...completed, completedTask]);
+      const updatedCart = cart.filter((_, i) => i !== index);
+      setCart(updatedCart);
+    }, 1000);
   };
 
+  //function for changing the color of li when button is clicked
   const toggleNew = (index) => {
     const updatedCart = [...cart];
     updatedCart[index].isNew = !updatedCart[index].isNew;
     setCart(updatedCart);
   };
-  const Delete=(index)=>{
-     const updatedCompleted = completed.filter((_, i) => i !== index);
-     setCompleted(updatedCompleted);
+
+  const EditTask=(index)=>{
+    const updatedCart = [...cart];
+    updatedCart[index]
   }
+
+  //function to delete task fromm the completed task List
+  const Delete = (index) => {
+    const updatedCompleted = completed.filter((_, i) => i !== index);
+    setCompleted(updatedCompleted);
+  };
 
   return (
     <>
@@ -45,14 +57,14 @@ export default function Add() {
         Add
       </button>
       <div className="display_section">
-        <section className="cartList">
-          <h4>Task list</h4>
+        <section className="taskList">
+          <h2>Task list :</h2>
           <ul>
             {cart.map((value, index) => (
               <li key={index} style={{ color: value.isNew ? "blue" : "black" }}>
                 {value.text}
                 <div className="display">
-                  <label htmlFor={`done-${index}`}>Completed</label>
+                  <label htmlFor={`done-${index}`}>: Completed</label>
                   <input
                     type="checkbox"
                     id={`done-${index}`}
@@ -67,16 +79,22 @@ export default function Add() {
                     onChange={() => toggleNew(index)}
                   />
                 </div>
+                <div className="display">
+                  <button id={`hello-${index}`}onClick={()=>edit(index)}>Edit</button>
+                </div>
               </li>
             ))}
           </ul>
         </section>
         <section className="completedTask">
-          <h4>Completed Task</h4>
+          <h2>Completed Task :</h2>
           <ul>
             {completed.map((value, index) => (
-              <li key={index}>{value.text}
-              <button className="delete-btn" onClick={()=>Delete(index)}>Delete</button>
+              <li key={index}>
+                {value.text}
+                <button className="delete-btn" onClick={() => Delete(index)}>
+                  Delete
+                </button>
               </li>
             ))}
           </ul>
