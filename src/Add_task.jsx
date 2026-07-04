@@ -4,14 +4,19 @@ export default function Add() {
   const [item, setItem] = useState("");
   const [cart, setCart] = useState([]);
   const [completed, setCompleted] = useState([]);
+  const [editIndex, setEditIndex] = useState(null);
 
   // function for adding task to the taskList
   const addItem = () => {
     if (item == "") return;
-    setCart([...cart, { text: item, isNew: false }]);
+    setCart([...cart, { id: Date.now(), text: item, isNew: false }]);
     // setCart([...cart,item]);
     setItem("");
   };
+
+  // updateCart() is used whenever we have to modify the cart.
+  // In React we don't change the original state.
+  // We copy it ,make change to the copied one  and update the original state
 
   //function to remove task from taskList when completed
   const removeItem = (index) => {
@@ -30,15 +35,12 @@ export default function Add() {
     setCart(updatedCart);
   };
 
-  const EditTask=(index)=>{
-    const updatedCart = [...cart];
-    updatedCart[index]
-  }
-
   //function to delete task fromm the completed task List
   const Delete = (index) => {
-    const updatedCompleted = completed.filter((_, i) => i !== index);
-    setCompleted(updatedCompleted);
+    setTimeout(() => {
+      const updatedCompleted = completed.filter((_, i) => i !== index);
+      setCompleted(updatedCompleted);
+    }, 1000);
   };
 
   return (
@@ -53,15 +55,18 @@ export default function Add() {
           onChange={(e) => setItem(e.target.value)}
         />
       </div>
-      <button onClick={addItem} className="btn">
+      <button onClick={addItem} className="Add-Btn">
         Add
       </button>
       <div className="display_section">
         <section className="taskList">
-          <h2>Task list :</h2>
+          <h2>Task List :</h2>
           <ul>
             {cart.map((value, index) => (
-              <li key={index} style={{ color: value.isNew ? "blue" : "black" }}>
+              <li
+                key={value.id}
+                style={{ color: value.isNew ? "blue" : "black" }}
+              >
                 {value.text}
                 <div className="display">
                   <label htmlFor={`done-${index}`}>: Completed</label>
@@ -80,7 +85,23 @@ export default function Add() {
                   />
                 </div>
                 <div className="display">
-                  <button id={`hello-${index}`}onClick={()=>edit(index)}>Edit</button>
+                  <button
+                    className="edit-Btn"
+                    onClick={() => {
+                      if (editIndex == index) {
+                        const updatedCart = [...cart];
+                        updatedCart[index].text = item;
+                        setCart(updatedCart);
+                        setItem("");
+                        setEditIndex(null);
+                      } else {
+                        setItem(cart[index].text);
+                        setEditIndex(index);
+                      }
+                    }}
+                  >
+                    {editIndex == index ? "Save" : "Edit"}
+                  </button>
                 </div>
               </li>
             ))}
@@ -92,7 +113,7 @@ export default function Add() {
             {completed.map((value, index) => (
               <li key={index}>
                 {value.text}
-                <button className="delete-btn" onClick={() => Delete(index)}>
+                <button className="delete-Btn" onClick={() => Delete(index)}>
                   Delete
                 </button>
               </li>
