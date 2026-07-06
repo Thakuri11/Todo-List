@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Add_style.css";
 export default function Add() {
   const [item, setItem] = useState("");
@@ -43,6 +43,33 @@ export default function Add() {
     }, 1000);
   };
 
+  // just for diplaying time using useEffect hook
+  const [sec, setSec] = useState(0);
+  const [min, setMin] = useState(0);
+  const [hr, setHr] = useState(0);
+  useEffect(() => {
+    const inter = setInterval(() => {
+      setSec((prev) => prev + 1);
+    }, 1000);
+    return () => {
+      clearInterval(inter);
+    }; //In strict mode, react runs setup  and cleanup one extra time before the actual setup
+  }, []);
+
+  useEffect(() => {
+    if (sec == 60) {
+      setMin((prev) => prev + 1);
+      setSec(0);
+    }
+  }, [sec]);
+
+  useEffect(() => {
+    if (min == 60) {
+      setHr((prev) => prev + 1);
+      setMin(0);
+    }
+  }, [min]);
+
   return (
     <>
       <div className="inputContainer">
@@ -68,7 +95,7 @@ export default function Add() {
                 style={{ color: value.isNew ? "blue" : "black" }}
               >
                 {value.text}
-                <div className="display">
+                <div className="taskListOption">
                   <label htmlFor={`done-${index}`}>: Completed</label>
                   <input
                     type="checkbox"
@@ -76,15 +103,15 @@ export default function Add() {
                     onChange={() => removeItem(index)}
                   />
                 </div>
-                <div className="display">
-                  <label htmlFor={`new-${index}`}>new</label>
+                <div className="taskListOption">
+                  <label htmlFor={`new-${index}`}>New</label>
                   <input
                     type="checkbox"
                     id={`new-${index}`}
                     onChange={() => toggleNew(index)}
                   />
                 </div>
-                <div className="display">
+                <div className="taskListOption">
                   <button
                     className="edit-Btn"
                     onClick={() => {
@@ -120,6 +147,12 @@ export default function Add() {
             ))}
           </ul>
         </section>
+      </div>
+      <div className="timeDisplay">
+        <h5>Time :</h5>
+        <span>{hr}:</span>
+        <span>{min}:</span>
+        <span>{sec}</span>
       </div>
     </>
   );

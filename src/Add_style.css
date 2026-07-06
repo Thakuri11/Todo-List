@@ -2,8 +2,15 @@
   margin: 0;
   padding: 0;
 }
+body {
+  /* background: linear-gradient(135deg, #74ebd5, #ACB6E5);*/
+  /* background: linear-gradient(135deg, #c084fc, #60a5fa);  */
+  background-color: #f4f7fb;
+  font-family: Arial, sans-serif;
+}
 .inputContainer {
   border: 1px solid grey;
+  border-radius: 20px;
   background-color: rgb(247, 237, 225);
   width: 30%;
   height: 30%;
@@ -23,9 +30,9 @@
     outline: none;
     transition: all 0.3s ease;
   }
-  input:focus{
-   border-color: #007bff;
-   box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+  input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
   }
 }
 .Add-Btn {
@@ -39,7 +46,7 @@
   transition: 0.5s ease;
   &:hover {
     cursor: pointer;
-      transform: scale(1.1);
+    transform: scale(1.1);
   }
 }
 .display_section {
@@ -49,22 +56,15 @@
   gap: 5%;
   & h2 {
     font-weight: bold;
-    margin-bottom: 5px; 
+    margin-bottom: 5px;
   }
 }
-.display {
-  display: flex;
-  flex-direction: row;
-  gap: 3px;
-  & input[type="checkbox"] {
-    width: 25px;
-    height: 25px;
-  }
-}
+
 .taskList {
-  padding: 10px;
+  padding: 20px;
   padding-left: 20px;
   border: 1px solid grey;
+  border-radius: 30px;
   background-color: rgb(247, 237, 225);
   width: 60%;
   & li {
@@ -81,6 +81,19 @@
   }
   & input {
     margin-left: 3px;
+  }
+  input:hover {
+    cursor: pointer;
+  }
+
+  & .taskListOption {
+    display: flex;
+    flex-direction: row;
+    gap: 3px;
+    & input[type="checkbox"] {
+      width: 25px;
+      height: 25px;
+    }
   }
 
   & .edit-Btn {
@@ -100,8 +113,9 @@
 }
 
 .completedTask {
-  padding: 10px;
+  padding: 20px;
   border: 1px solid grey;
+  border-radius: 30px;
   background-color: rgb(247, 237, 225);
   width: 40%;
   & li {
@@ -109,7 +123,7 @@
     flex-direction: row;
     gap: 10px;
     font-size: 23px;
-     align-items: center;
+    align-items: center;
     margin-bottom: 11px;
   }
   & li::before {
@@ -129,4 +143,18 @@
       transform: scale(1.1);
     }
   }
+}
+
+.timeDisplay {
+  margin-top: 15%;
+  margin-left: 1%;
+  border: 1px solid grey;
+  border-radius: 20px;
+  background-color: rgb(247, 237, 225);
+  width: 10%;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 3px;
+  font-size: 25px;
 }
