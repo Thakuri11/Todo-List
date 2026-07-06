@@ -1,10 +1,10 @@
 import { useState } from 'react'
-import Add_task from './Add_task'
+import Todo_List from './Todo_List'
 function App()
 {
 return (
 <div>
-    <Add_task/>
+    <Todo_List/>
 </div>
 )
 };
